@@ -90,15 +90,18 @@ exports.login = function(req, res){
 }
 
 
+
+
 exports.updateUserData = (req, res) => {
     const userData = req.body;
     const id = req.user._id;
-    productData.updatedAt = Date.now() 
+    userData.updatedAt = Date.now() 
     User.findByIdAndUpdate(id, {$set:userData}, {new : true},(err,updated)=>{
         if(err){
             return res.status(422).send({err})
         }else {
-            res.status(200).send(updated)
+            console.log(updated)
+            res.status(200).send({userdata:updated})
         }
     })
 }
